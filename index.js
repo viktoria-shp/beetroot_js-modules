@@ -48,8 +48,9 @@ while (number != 0) {
 console.log('Reverse number', revers);*/
 
 //task_10
-let s = prompt("Enter the amount ");
+/*let s = prompt("Enter the amount ");
 const procent = 5,
         time = 60;
 
-alert('your procent ' + ' ' + (s*procent*time/365/100));
+alert('your procent ' + ' ' + (s*procent*time/365/100));*/
+

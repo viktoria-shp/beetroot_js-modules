@@ -168,10 +168,12 @@ while (number != 0) {
    }
 console.log('Reverse number', revers);*/
 //task_10
-var s = prompt("Enter the amount ");
-var procent = 5,
-    time = 60;
-alert('your procent ' + ' ' + s * procent * time / 365 / 100);
+
+/*let s = prompt("Enter the amount ");
+const procent = 5,
+        time = 60;
+
+alert('your procent ' + ' ' + (s*procent*time/365/100));*/
 },{}],"C:/Users/Home/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -200,7 +202,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60137" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49861" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
