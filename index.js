@@ -51,6 +51,5 @@ console.log('Reverse number', revers);*/
 /*let s = prompt("Enter the amount ");
 const procent = 5,
         time = 60;
-
 alert('your procent ' + ' ' + (s*procent*time/365/100));*/
 
