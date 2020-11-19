@@ -106,7 +106,7 @@ function fun_js() {
     $("#g4t7").on("click", function(){
         const h = parseInt(prompt(`Enter hours`)),
               m = parseInt(prompt(`Enter minutes`)),
-              s = parseInt(prompt(`Enter secunds`));
+              s = parseInt(prompt(`Enter seconds`));
         function formatTime(hour, min, sec) {
             let time = new Date();
             time.setHours(hour);
@@ -127,7 +127,7 @@ function fun_js() {
     $("#g4t8").on("click", function(){
         const h = parseInt(prompt(`Enter hours`)),
               m = parseInt(prompt(`Enter minutes`)),
-              s = parseInt(prompt(`Enter secunds`));
+              s = parseInt(prompt(`Enter seconds`));
         function getSeconds(hour, min, sec) {
             let time = new Date();
             time.setHours(hour);
@@ -141,7 +141,7 @@ function fun_js() {
     /*Написать функцию, которая принимает количество секунд, переводит их в часы, 
     минуты и секунды и возвращает в виде строки «чч:мм:сс». */
     $("#g4t9").on("click", function(){
-        const s = parseInt(prompt(`Enter secunds`));
+        const s = parseInt(prompt(`Enter seconds`));
         function formatTime(sec) {
             let time = new Date();
             time.setHours(0);
@@ -167,10 +167,10 @@ function fun_js() {
     $("#g4t10").on("click", function(){
         const h1 = parseInt(prompt(`Enter hours`)),
               m1 = parseInt(prompt(`Enter minutes`)),
-              s1 = parseInt(prompt(`Enter secunds`)),
+              s1 = parseInt(prompt(`Enter seconds`)),
               h2 = parseInt(prompt(`Enter second hours`)),
               m2 = parseInt(prompt(`Enter second minutes`)),
-              s2 = parseInt(prompt(`Enter second secunds`));
+              s2 = parseInt(prompt(`Enter second seconds`));
         function getSeconds(hour, min, sec) {
             let time = new Date();
             time.setHours(hour);

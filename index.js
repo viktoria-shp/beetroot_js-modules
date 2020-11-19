@@ -10,6 +10,9 @@ cicle();
 
 import {fun_js} from './function_js';
 fun_js();
+
+import {obj_js} from './obj_js';
+obj_js();
     
 
 $('.accordion-toggle').click(function(e) {

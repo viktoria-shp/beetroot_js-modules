@@ -710,7 +710,7 @@ function fun_js() {
   $("#g4t7").on("click", function () {
     var h = parseInt(prompt("Enter hours")),
         m = parseInt(prompt("Enter minutes")),
-        s = parseInt(prompt("Enter secunds"));
+        s = parseInt(prompt("Enter seconds"));
 
     function formatTime(hour, min, sec) {
       var time = new Date();
@@ -734,7 +734,7 @@ function fun_js() {
   $("#g4t8").on("click", function () {
     var h = parseInt(prompt("Enter hours")),
         m = parseInt(prompt("Enter minutes")),
-        s = parseInt(prompt("Enter secunds"));
+        s = parseInt(prompt("Enter seconds"));
 
     function getSeconds(hour, min, sec) {
       var time = new Date();
@@ -751,7 +751,7 @@ function fun_js() {
   минуты и секунды и возвращает в виде строки «чч:мм:сс». */
 
   $("#g4t9").on("click", function () {
-    var s = parseInt(prompt("Enter secunds"));
+    var s = parseInt(prompt("Enter seconds"));
 
     function formatTime(sec) {
       var time = new Date();
@@ -780,10 +780,10 @@ function fun_js() {
   $("#g4t10").on("click", function () {
     var h1 = parseInt(prompt("Enter hours")),
         m1 = parseInt(prompt("Enter minutes")),
-        s1 = parseInt(prompt("Enter secunds")),
+        s1 = parseInt(prompt("Enter seconds")),
         h2 = parseInt(prompt("Enter second hours")),
         m2 = parseInt(prompt("Enter second minutes")),
-        s2 = parseInt(prompt("Enter second secunds"));
+        s2 = parseInt(prompt("Enter second seconds"));
 
     function getSeconds(hour, min, sec) {
       var time = new Date();
@@ -815,6 +815,167 @@ function fun_js() {
     alert(oddsDate(h1, m1, s1, h2, m2, s2));
   });
 }
+},{}],"obj_js.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.obj_js = obj_js;
+
+function obj_js() {
+  //objects
+  //task_1
+
+  /*Создать объект, описывающий автомобиль (производитель, модель, год выпуска, средняя скорость), 
+  и следующие функции для работы с этим объектом:
+  Функция для вывода на экран информации об автомобиле;
+  Функция для подсчета необходимого времени для преодоления переданного расстояния со средней скоростью.
+  Учтите, что через каждые 4 часа дороги водителю необходимо делать перерыв на 1 час. */
+  $("#g5t1").on("click", function () {
+    var car = {
+      manufacturer: 'Audi',
+      model: 'A7',
+      year: 2020,
+      speed: 200
+    };
+
+    function carInfo(car) {
+      return "Car info:\n".concat(car.manufacturer, " ").concat(car.model, " \nyear:").concat(car.year, " \nspeed:").concat(car.speed);
+    }
+
+    function calcTimeForDistance(car) {
+      var distance = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1000;
+      var hour;
+      hour = distance / car.speed;
+      hour = parseInt(hour / 4) + hour;
+      return hour;
+    }
+
+    alert(carInfo(car));
+    var distance = prompt("Enter distance");
+    alert(calcTimeForDistance(car, distance));
+  }); //task_2
+
+  /*Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, и следующие функции для работы с этим объектом: 
+        Функция сложения 2-х объектов-дробей;
+        Функция вычитания 2-х объектов-дробей;
+        Функция умножения 2-х объектов-дробей;
+        Функция деления 2-х объектов-дробей;
+        Функция сокращения объекта-дроби. */
+
+  $("#g5t2").on("click", function () {
+    function Fraction(upNumber, downNumber) {
+      return {
+        upNumber: upNumber,
+        downNumber: downNumber
+      };
+    }
+
+    var firstNumerator = prompt("Enter first numerator");
+    var secondNumerator = prompt("Enter second numerator");
+    var firstDenominator = prompt("Enter first denominator");
+    var seconDenominator = prompt("Enter second denominator");
+    var firstNumber = Fraction(firstNumerator, firstDenominator);
+    var secondNumber = Fraction(secondNumerator, seconDenominator);
+
+    function multiFraction(obj1, obj2) {
+      var resultUpNumber = obj1.upNumber * obj2.upNumber;
+      var resultDownNumber = obj1.downNumber * obj2.downNumber;
+      alert("Multi: ".concat(resultUpNumber, "/").concat(resultDownNumber));
+    }
+
+    multiFraction(firstNumber, secondNumber);
+
+    function divisionFraction(obj1, obj2) {
+      var resultUpNumber = obj1.upNumber * obj2.downNumber;
+      var resultDownNumber = obj1.downNumber * obj2.upNumber;
+      alert("Division: ".concat(resultUpNumber, "/").concat(resultDownNumber));
+    }
+
+    divisionFraction(firstNumber, secondNumber);
+
+    function gcd(n, m) {
+      return m == 0 ? n : gcd(m, n % m);
+    }
+
+    function nok(n, m) {
+      return n * m / gcd(n, m);
+    }
+
+    function subtractionFraction(obj1, obj2) {
+      var resultUpNumber = obj1.upNumber * (nok(obj1.downNumber, obj2.downNumber) / obj1.downNumber) - obj2.upNumber * (nok(obj1.downNumber, obj2.downNumber) / obj2.downNumber);
+      var resultDownNumber = nok(obj1.downNumber, obj2.downNumber);
+      alert("Subtraction: ".concat(resultUpNumber, "/").concat(resultDownNumber));
+    }
+
+    subtractionFraction(firstNumber, secondNumber);
+
+    function additionFraction(obj1, obj2) {
+      var resultUpNumber = obj1.upNumber * (nok(obj1.downNumber, obj2.downNumber) / obj1.downNumber) + obj2.upNumber * (nok(obj1.downNumber, obj2.downNumber) / obj2.downNumber);
+      var resultDownNumber = nok(obj1.downNumber, obj2.downNumber);
+      alert("Addition: ".concat(resultUpNumber, "/").concat(resultDownNumber));
+    }
+
+    additionFraction(firstNumber, secondNumber);
+  }); //task_3
+
+  /*Создать объект, описывающий время (часы, минуты, секунды), 
+  и следующие функции для работы с этим объектом: 
+  Функция вывода времени на экран;
+  Функция изменения времени на переданное количество секунд;
+  Функция изменения времени на переданное количество минут;
+  Функция изменения времени на переданное количество часов. 
+  Учтите, что в последних 3-х функциях, при изменении одной части времени,
+  может измениться и другая. Например, если ко времени «20:30:45» добавить 30 секунд, 
+  то должно получиться «20:31:15», а не «20:30:75». */
+
+  $("#g5t3").on("click", function () {
+    function formatTime(time) {
+      var timeSape = new Date();
+      timeSape.setHours(time.hours);
+      timeSape.setMinutes(time.minutes);
+      timeSape.setSeconds(time.seconds);
+      var hours = timeSape.getHours();
+      console.log(hours);
+      if (hours < 10) hours = '0' + hours;
+      var minutes = timeSape.getMinutes();
+      if (minutes < 10) minutes = '0' + minutes;
+      var second = timeSape.getSeconds();
+      if (second < 10) second = '0' + second;
+      return hours + ':' + minutes + ':' + second;
+    }
+
+    function addHoursToTime(time) {
+      var hours = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+      time.hours += parseInt(hours);
+      return formatTime(time);
+    }
+
+    function addMinutesToTime(time) {
+      var minutes = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+      time.minutes += parseInt(minutes);
+      return formatTime(time);
+    }
+
+    function addSecondsToTime(time) {
+      var seconds = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+      time.seconds += parseInt(seconds);
+      return formatTime(time);
+    }
+
+    var time = {
+      hours: 0,
+      minutes: 0,
+      seconds: 0
+    };
+    time.hours = parseInt(prompt("Enter hours")), time.minutes = parseInt(prompt("Enter minutes")), time.seconds = parseInt(prompt("Enter seconds"));
+    alert(formatTime(time));
+    alert(addHoursToTime(time, 2));
+    alert(addMinutesToTime(time, 2));
+    alert(addSecondsToTime(time, 200));
+  });
+}
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -826,10 +987,13 @@ var _cicle_js = require("./cicle_js");
 
 var _function_js = require("./function_js");
 
+var _obj_js = require("./obj_js");
+
 (0, _basics_js.basics)();
 (0, _data_js.data_js)();
 (0, _cicle_js.cicle)();
 (0, _function_js.fun_js)();
+(0, _obj_js.obj_js)();
 $('.accordion-toggle').click(function (e) {
   e.preventDefault();
   $("a:first-of-type").removeClass('chev');
@@ -846,7 +1010,7 @@ $('.accordion-toggle').click(function (e) {
     $this.next().slideToggle(350);
   }
 });
-},{"./basics_js":"basics_js.js","./data_js":"data_js.js","./cicle_js":"cicle_js.js","./function_js":"function_js.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./basics_js":"basics_js.js","./data_js":"data_js.js","./cicle_js":"cicle_js.js","./function_js":"function_js.js","./obj_js":"obj_js.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
