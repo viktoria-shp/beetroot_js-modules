@@ -976,6 +976,291 @@ function obj_js() {
     alert(addSecondsToTime(time, 200));
   });
 }
+},{}],"array_js.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.array_js = array_js;
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function array_js() {
+  //objects
+  //task_1
+
+  /*Создать массив «Список покупок». Каждый элемент массива является объектом, 
+  который содержит название продукта, необходимое количество и куплен или нет. 
+  Написать несколько функций для работы с таким массивом.
+      Вывод всего списка на экран таким образом, чтобы сначала шли некупленные продукты, 
+      а потом – купленные.
+      Добавление покупки в список. Учтите, что при добавлении покупки с уже существующим 
+      в списке продуктом, необходимо увеличивать количество в существующей покупке, а не добавлять новую.
+      Покупка продукта. Функция принимает название продукта и отмечает его как купленный.*/
+  $("#g6t1").on("click", function () {
+    var Product = /*#__PURE__*/function () {
+      function Product() {
+        var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+        _classCallCheck(this, Product);
+
+        Object.assign(this, {
+          pName: null,
+          amount: 1,
+          bought: false
+        }, _objectSpread({}, params));
+      }
+
+      _createClass(Product, null, [{
+        key: "sortDefault",
+        value: function sortDefault(a, b) {
+          // чтобы сначала шли некупленные продукты, а потом – купленные
+          return (a.bought - b.bought) * 10 + a.pName.localeCompare(b.pName);
+        }
+      }]);
+
+      return Product;
+    }();
+
+    Product.prototype.toString = function () {
+      return "".concat(this.pName, " (x").concat(this.amount, "), ").concat(this.bought ? 'куплено' : 'не куплено');
+    };
+
+    var shopList = [{
+      pName: 'Банан',
+      amount: 2
+    }, {
+      pName: 'Апельсин',
+      amount: 5,
+      bought: true
+    }, {
+      pName: 'Молоко',
+      bought: true
+    }, {
+      pName: 'Груша',
+      amount: 10
+    }].map(function (prodDef) {
+      return new Product(prodDef);
+    });
+
+    var addToShopList = function addToShopList(prodDef) {
+      // при добавлении покупки с уже существующим в списке продуктом, необходимо увеличивать количество в существующей покупке, а не добавлять новую
+      var prod = shopList.find(function (prod) {
+        return prod.pName === prodDef.pName;
+      });
+      if (!prod) return shopList.push(new Product(prodDef));
+      prod.amount += prodDef.amount;
+    };
+
+    var printShopList = function printShopList() {
+      return shopList.forEach(function (prod, i) {
+        return console.log("".concat(i + 1, ". ").concat(prod));
+      });
+    };
+
+    shopList.sort(Product.sortDefault);
+    printShopList();
+    console.log('---');
+    addToShopList({
+      pName: 'Банан',
+      amount: 3
+    });
+    addToShopList({
+      pName: 'Шоколад',
+      amount: 2
+    });
+    shopList.sort(Product.sortDefault);
+    printShopList();
+  }); //task_2
+
+  /*Создать массив, описывающий чек в магазине. 
+  Каждый элемент массива состоит из названия товара, 
+  количества и цены за единицу товара. Написать следующие функции:
+  Распечатка чека на экран;
+  Подсчет общей суммы покупки;
+  Получение самой дорогой покупки в чеке;
+  Подсчет средней стоимости одного товара в чеке.*/
+
+  $("#g6t2").on("click", function () {
+    var checkArr = [{
+      name: 'apple',
+      count: 2,
+      price: 28
+    }, {
+      name: 'kivi',
+      count: 1,
+      price: 10
+    }, {
+      name: 'banana',
+      count: 2,
+      price: 30
+    }]; // Распечатка чека на экран;
+
+    checkArr.forEach(function (check) {
+      return console.log(check);
+    }); //Подсчет общей суммы покупки;
+
+    var amount = checkArr.reduce(function (total, checkArr) {
+      return total + checkArr.price;
+    }, 0);
+    console.log('The amount of your purchase is' + " ".concat(amount)); //Получение самой дорогой покупки в чеке;
+
+    var max = 0;
+    checkArr.forEach(function (checkArr) {
+      return checkArr.price > max ? max = checkArr.price : checkArr.price;
+    });
+    console.log('The most expensive purchase in check is' + " ".concat(max)); //Подсчет средней стоимости одного товара в чеке.
+
+    var average = amount / checkArr.length;
+    console.log('The average purchase price in the check' + " ".concat(average.toFixed(1)));
+  }); //task_3
+
+  /*Создать объект, описывающий время (часы, минуты, секунды), 
+  и следующие функции для работы с этим объектом: 
+  Функция вывода времени на экран;
+  Функция изменения времени на переданное количество секунд;
+  Функция изменения времени на переданное количество минут;
+  Функция изменения времени на переданное количество часов. 
+  Учтите, что в последних 3-х функциях, при изменении одной части времени,
+  может измениться и другая. Например, если ко времени «20:30:45» добавить 30 секунд, 
+  то должно получиться «20:31:15», а не «20:30:75». */
+
+  $("#g6t3").on("click", function () {
+    var s = {
+      color: "red",
+      border: "1px solid black",
+      font: "50px",
+      align: "center"
+    };
+    var genStyle = genStrStyleFromObj(s);
+
+    function genStrStyleFromObj(obj) {
+      var strStyle = "";
+
+      for (var _i = 0, _Object$entries = Object.entries(obj); _i < _Object$entries.length; _i++) {
+        var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+            attrStyle = _Object$entries$_i[0],
+            valStyle = _Object$entries$_i[1];
+
+        strStyle += "".concat(attrStyle, ": ").concat(valStyle, ";");
+      }
+
+      return strStyle;
+    }
+
+    var p = document.createElement("p");
+    p.style.cssText = genStyle;
+    p.style.fontSize = s.font;
+    p.style.textAlign = s.align;
+    p.innerHTML = "Hello world";
+    document.write(p.outerHTML);
+  }); //task_4
+
+  /*Создать массив аудиторий академии. Объект-аудитория состоит из названия, 
+  количества посадочных мест (от 10 до 20) и названия факультета, 
+  для которого она предназначена. Написать несколько функций для работы с ним
+  Вывод на экран всех аудиторий;
+  Вывод на экран аудиторий для указанного факультета;
+  Вывод на экран только тех аудиторий, которые подходят для переданной группы. Объект-группа состоит из названия, количества студентов и названия факультета;
+  Функция сортировки аудиторий по количеству мест;
+  Функция сортировки аудиторий по названию (по алфавиту).*/
+
+  $("#g6t4").on("click", function () {
+    var audienceArr = [{
+      audienceName: 'mif_1',
+      numSets: 10,
+      facultyName: 'mif'
+    }, {
+      audienceName: 'fiz_2',
+      numSets: 20,
+      facultyName: 'fiz'
+    }, {
+      audienceName: 'mif_2',
+      numSets: 15,
+      facultyName: 'mif'
+    }, {
+      audienceName: 'mif_3',
+      numSets: 16,
+      facultyName: 'mif'
+    }, {
+      audienceName: 'fiz_1',
+      numSets: 10,
+      facultyName: 'fiz'
+    }, {
+      audienceName: 'ped_1',
+      numSets: 12,
+      facultyName: 'ped'
+    }, {
+      audienceName: 'ped_2',
+      numSets: 15,
+      facultyName: 'ped'
+    }]; //  Вывод на экран всех аудиторий;
+
+    audienceArr.forEach(function (audience) {
+      return console.log(audience);
+    }); //Вывод на экран аудиторий для указанного факультета;
+
+    var mif_1 = audienceArr.filter(function (audience) {
+      return audience.facultyName === 'mif';
+    });
+    console.log(mif_1); //Вывод на экран только тех аудиторий, которые подходят для переданной группы. 
+    //Объект-группа состоит из названия, количества студентов и названия факультета;
+
+    var group = {
+      name: 'mif22',
+      quantity: 15,
+      fName: 'mif'
+    };
+    var audience = audienceArr.filter(function (audience) {
+      return group.quantity <= audience.numSets && group.fName === audience.facultyName;
+    });
+    console.log(group, audience); //Функция сортировки аудиторий по количеству мест;
+
+    audienceArr.sort(function (a, b) {
+      return a.numSets - b.numSets;
+    });
+    console.log(audienceArr); //Функция сортировки аудиторий по названию (по алфавиту).
+
+    audienceArr.sort(function (a, b) {
+      var audienceNameA = a.audienceName.toUpperCase();
+      var audienceNameB = b.audienceName.toUpperCase();
+
+      if (audienceNameA < audienceNameB) {
+        return -1;
+      }
+
+      if (audienceNameA > audienceNameB) {
+        return 1;
+      }
+
+      return 0;
+    });
+    console.log(audienceArr);
+  });
+}
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -989,11 +1274,14 @@ var _function_js = require("./function_js");
 
 var _obj_js = require("./obj_js");
 
+var _array_js = require("./array_js");
+
 (0, _basics_js.basics)();
 (0, _data_js.data_js)();
 (0, _cicle_js.cicle)();
 (0, _function_js.fun_js)();
 (0, _obj_js.obj_js)();
+(0, _array_js.array_js)();
 $('.accordion-toggle').click(function (e) {
   e.preventDefault();
   $("a:first-of-type").removeClass('chev');
@@ -1010,7 +1298,7 @@ $('.accordion-toggle').click(function (e) {
     $this.next().slideToggle(350);
   }
 });
-},{"./basics_js":"basics_js.js","./data_js":"data_js.js","./cicle_js":"cicle_js.js","./function_js":"function_js.js","./obj_js":"obj_js.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./basics_js":"basics_js.js","./data_js":"data_js.js","./cicle_js":"cicle_js.js","./function_js":"function_js.js","./obj_js":"obj_js.js","./array_js":"array_js.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -1038,7 +1326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49464" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57458" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

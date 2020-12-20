@@ -13,6 +13,9 @@ fun_js();
 
 import {obj_js} from './obj_js';
 obj_js();
+
+import {array_js} from './array_js';
+array_js();
     
 
 $('.accordion-toggle').click(function(e) {
